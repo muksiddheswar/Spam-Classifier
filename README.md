@@ -12,8 +12,10 @@ _Working further on making this project more generic._
 ## Version: V01_01:
 - Single script for preprocessing, training, testing. 
 
-<\br>
+
+___
+
 
 #### Reference:
-https://github.com/savanpatel
+https://github.com/savanpatel    
 https://medium.com/machine-learning-101/chapter-1-supervised-learning-and-naive-bayes-classification-part-2-coding-5966f25f1475
