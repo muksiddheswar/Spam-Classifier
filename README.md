@@ -11,7 +11,10 @@ _Working further on making this project more generic._
 
 ## Version: V01_01:
 - Single script for preprocessing, training, testing. 
+- Simple implementation I did as a part of class project during my masters degree.
 
+Each version has it's own branch.   
+Master is the latest version. (And possibly under development.)    
 
 ___
 
