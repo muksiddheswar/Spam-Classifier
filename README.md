@@ -7,7 +7,10 @@ _Working on making this project more generic._
 
 ## Version: V02_01
 - Currently in development.
-- Modularising the code into separate files.
+
+- Modularised the code into separate files.
+- config.txt will contain the location of the data folder.
+- If this file is missing then it is assumed that the data folders are present in the project root.
 
 ## Version: V01_01:
 - Single script for preprocessing, training, testing. 
