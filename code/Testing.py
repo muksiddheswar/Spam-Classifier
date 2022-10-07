@@ -1,6 +1,9 @@
+from Prediction import classify
+
 # ---------------------------------------------------------------------------------
 # --- TESTING ---
 # ---------------------------------------------------------------------------------
+
 
 def get_classification(features_summary , input_instances):
     classifications = []
