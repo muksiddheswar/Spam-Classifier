@@ -76,3 +76,8 @@ def extract_features(directory):
             instance_labels[mail_id] = 1
         mail_id = mail_id + 1
     return features_matrix, instance_labels
+
+
+
+# TRAIN_DIR = "../train-mails"
+# dictionary = make_dictionary(TRAIN_DIR)
