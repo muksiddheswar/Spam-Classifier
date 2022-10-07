@@ -57,8 +57,8 @@ def classify(features_summary, input_instance):
     for label, prob in probabilities.items():
         # Boundary condition
         if final_label == -1:
-            final_label, max_prob = label, prob
+            final_label, max_prob = float(label), prob
 
         if prob > max_prob:
-            final_label, max_prob = label, prob
+            final_label, max_prob = float(label), prob
     return final_label
