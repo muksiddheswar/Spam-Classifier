@@ -3,7 +3,7 @@
 This is an implementation of the Naive Bayes Classification technique as a Spam Classifier.    
 Coded from the scratch in Python.
 
-_Working further on making this project more generic._
+_Working on making this project more generic._
 
 ## Version: V02_01
 - Currently in development.
