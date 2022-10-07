@@ -3,8 +3,7 @@
 # ---------------------------------------------------------------------------------
 
 import math
-
-class_count = {}
+import json
 
 # Calculates the probability as per normal distribution
 # def calculate_gaussian_probability(x, mean, stdev):
@@ -36,7 +35,17 @@ def check_class_probabilities(features_summary, input_instance):
                 log_terms += ft
                 exponent_terms += exponent
 
-        probabilities[class_label] = log_terms - exponent_terms + math.log((class_count[class_label] / mail_count))
+        f = open("mail_count.txt", "r")
+        mail_count = int(f.read())
+        f.close()
+
+        f = open("class_count.txt", "r")
+        result = f.read()
+        class_count = json.loads(result)
+        f.close()
+
+        probabilities[str(class_label)] = log_terms - exponent_terms \
+                                          + math.log((class_count[str(class_label)] / mail_count))
     return probabilities
 
 
