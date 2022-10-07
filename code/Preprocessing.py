@@ -48,6 +48,10 @@ def make_dictionary(directory):
         word_id[word[0]] = count
         count += 1
 
+    f = open("mail_count.txt", "w")
+    f.write(str(mail_count))
+    f.close()
+
     return dictionary
 
 
@@ -76,8 +80,6 @@ def extract_features(directory):
             instance_labels[mail_id] = 1
         mail_id = mail_id + 1
     return features_matrix, instance_labels
-
-
 
 # TRAIN_DIR = "../train-mails"
 # dictionary = make_dictionary(TRAIN_DIR)
