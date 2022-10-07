@@ -1,8 +1,3 @@
-import os
-import math
-import numpy as np
-from collections import Counter
-
 from Preprocessing import make_dictionary, extract_features
 from TrainingAndSummarise import summarise_class
 from Testing import accuracy, get_classification
