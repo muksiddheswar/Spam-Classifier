@@ -5,6 +5,10 @@ Coded from the scratch in Python.
 
 _Working on making this project more generic._
 
+## Version: V02_02    
+- Under development.
+- Add docstring and comments.
+
 ## Version: V02_01    
 
 ![image](https://user-images.githubusercontent.com/17706548/194677163-c0e0f80c-7a59-4b44-b6d5-da15e90ec888.png)
