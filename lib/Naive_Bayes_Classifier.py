@@ -7,7 +7,6 @@ from lib.Testing import accuracy, get_classification
 # --- DRIVER PROGRAM ---
 # ---------------------------------------------------------------------------------
 
-
 def naive_bayes_classifier(train_dir ="../train-mails", test_dir ="../test-mails"):
     dictionary = make_dictionary(train_dir)
     print("Reading and Processing emails from file.")
