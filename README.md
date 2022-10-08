@@ -3,6 +3,9 @@
 This is an implementation of the Naive Bayes Classification technique as a Spam Classifier.    
 Coded from the scratch in Python.
 
+Each version has it's own branch.   
+Master is the latest version. (And possibly under development.)    
+
 _Working on making this project more generic._
 
 ## Version: V02_02    
@@ -21,9 +24,6 @@ _Working on making this project more generic._
 ## Version: V01_01:
 - Single script for preprocessing, training, testing. 
 - Simple implementation I did as a part of class project during my masters degree.
-
-Each version has it's own branch.   
-Master is the latest version. (And possibly under development.)    
 
 ___
 
