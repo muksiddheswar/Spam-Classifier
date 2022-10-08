@@ -13,7 +13,7 @@ from lib.Testing import accuracy, get_classification
 
 def naive_bayes_classifier(train_dir ="../train-mails", test_dir ="../test-mails"):
     dictionary = make_dictionary(train_dir)
-    print("reading and processing emails from file.")
+    print("Reading and Processing emails from file.")
 
     features_matrix, labels = extract_features(train_dir)
     test_feature_matrix, test_labels = extract_features(test_dir)
@@ -23,8 +23,8 @@ def naive_bayes_classifier(train_dir ="../train-mails", test_dir ="../test-mails
 
     predicted_labels = get_classification(model, test_feature_matrix)
 
-    print("FINISHED classifying. accuracy score : ")
-    print(accuracy(test_labels, predicted_labels))
+    print("Finished classifying. accuracy score : " + str(accuracy(test_labels, predicted_labels)))
+
 
 
 # dictionary = make_dictionary(TRAIN_DIR)
