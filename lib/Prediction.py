@@ -5,10 +5,11 @@
 import math
 import json
 
+
 # Calculates the probability as per normal distribution
-# def calculate_gaussian_probability(x, mean, stdev):
-#     exp = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))
-#     return (1 / (math.sqrt(2*math.pi) * stdev)) * exp
+def calculate_gaussian_probability(x, mean, stdev):
+    exp = math.exp(-(math.pow(x - mean, 2) / (2 * math.pow(stdev, 2))))
+    return (1 / (math.sqrt(2 * math.pi) * stdev)) * exp
 
 
 def calculate_log_gaussian_probability(x, mean, stdev):
