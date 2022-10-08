@@ -5,12 +5,14 @@ Coded from the scratch in Python.
 
 _Working on making this project more generic._
 
-## Version: V02_01
-- Currently in development.
+## Version: V02_01    
 
-- Modularised the code into separate files.
-- config.txt will contain the location of the data folder.
-- If this file is missing then it is assumed that the data folders are present in the project root.
+![image](https://user-images.githubusercontent.com/17706548/194677163-c0e0f80c-7a59-4b44-b6d5-da15e90ec888.png)
+
+
+- Currently classification works in the specified set of mails.
+- Modularised source code into separate files.
+- Removed hard coded paths. (config.txt)
 
 ## Version: V01_01:
 - Single script for preprocessing, training, testing. 
