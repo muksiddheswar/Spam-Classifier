@@ -10,9 +10,14 @@ mail_count = 0
 word_id = {}
 
 
-# Reads all emails and creates a dictionary of the 3000 most common words
-# Also creates IDs for each word
-def make_dictionary(directory):
+def make_top_words_list(directory: str) -> list[tuple]:
+    """
+    Reads all emails and creates a list of tuples of the 3000 most common words.
+    Also creates IDs for each word.
+
+    :param directory: str
+    :return: list[tuple]
+    """
     # List of all words in all train mails
     all_words = []
     global mail_count
@@ -27,32 +32,25 @@ def make_dictionary(directory):
                 words = line.split()
                 all_words += words
 
-    # Creates a dictionary of all words with their counts
-    dictionary = Counter(all_words)
+    # Creates a dictionary (Counter) of all words with their counts
+    top_word_list = Counter(all_words)
 
-    # DATA CLEANING
     # Remove all punctuations and single letter words
-    for item in list(dictionary):
+    for item in list(top_word_list):
         if not item.isalpha():
-            del dictionary[item]
+            del top_word_list[item]
         elif len(item) == 1:
-            del dictionary[item]
+            del top_word_list[item]
 
     # Working with the 3000 most common words in the dictionary.
-    dictionary = dictionary.most_common(3000)
-
-    # Creates a list of words and assigns then an ID.
-    # This ID list is later used while feature matrix generation.
-    count = 0
-    for word in dictionary:
-        word_id[word[0]] = count
-        count += 1
+    # most_common return a list of tuples
+    top_word_list = top_word_list.most_common(3000)
 
     f = open("mail_count.txt", "w")
     f.write(str(mail_count))
     f.close()
 
-    return dictionary
+    return top_word_list
 
 
 # Creates a tabular representation of the dataset
