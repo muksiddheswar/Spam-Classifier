@@ -8,10 +8,18 @@ import json
 class_count = {}
 
 
-# Separates the dataset into dictionary entries based on labels.
-# Individual instances are still intact
 def partition_by_labels(features_matrix, instance_labels):
+    """
+    Separates the dataset into dictionary entries based on labels.
+    Individual instances are still intact.
+    This function is made generic so that it can handle more than 2 label types.
+
+    :param features_matrix: ndarray
+    :param instance_labels: ndarray
+    :return: dict
+    """
     partitioned_features_matrix = {}
+
     for i in range(len(features_matrix)):
 
         # Add a new label when encountered during training
@@ -33,14 +41,20 @@ def standard_deviation(data):
 
 
 def summarise_features(dataset):
+    """
+    The mean and standard deviation of each feature for each label
+
+    :param dataset:
+    :return: tuple
+    """
     summary = [(mean(attribute), standard_deviation(attribute)) for attribute in zip(*dataset)]
     return summary
 
 
 # calculates the summary of features for each class
-def summarise_class(features_matrix, instance_labels):
+def summarise_class(email_features_matrix, email_labels):
     # Feature Matrix is partitioned into a dictionary separated by labels
-    partitioned = partition_by_labels(features_matrix, instance_labels)
+    partitioned = partition_by_labels(email_features_matrix, email_labels)
 
     # Partitioned Features Matrix is summarised
     features_summary = {}
@@ -54,3 +68,10 @@ def summarise_class(features_matrix, instance_labels):
             f.write(json.dumps(class_count))
 
     return features_summary
+
+
+# from lib.Preprocessing import create_word_database, extract_features
+# TRAIN_DIR = "../train-mails"
+# top_words, top_word_id = create_word_database(TRAIN_DIR)
+# email_features_matrix, email_labels = extract_features(TRAIN_DIR, top_word_id)
+# partition = partition_by_labels(email_features_matrix, email_labels)
