@@ -5,8 +5,6 @@
 import math
 import json
 
-class_count = {}
-
 
 def partition_by_labels(features_matrix, instance_labels):
     """
@@ -42,17 +40,24 @@ def standard_deviation(data):
 
 def summarise_features(dataset):
     """
-    The mean and standard deviation of each feature for each label
+    The mean and standard deviation of each feature of a given iterable.
 
-    :param dataset:
-    :return: tuple
     """
     summary = [(mean(attribute), standard_deviation(attribute)) for attribute in zip(*dataset)]
     return summary
 
 
-# calculates the summary of features for each class
-def summarise_class(email_features_matrix, email_labels):
+def summarise_labels(email_features_matrix, email_labels):
+    """
+    Calculates the summary of features for each class.
+    Summary includes the mean and standard deviation of each of the 3000 words for two labels.
+
+    :param email_features_matrix:
+    :param email_labels:
+    :return:
+    """
+    class_count = {}
+
     # Feature Matrix is partitioned into a dictionary separated by labels
     partitioned = partition_by_labels(email_features_matrix, email_labels)
 
@@ -64,8 +69,13 @@ def summarise_class(email_features_matrix, email_labels):
         features_summary[class_label] = summarise_features(instances)
         class_count[class_label] = len(instances)
 
-        with open("class_count.txt", "w") as f:
-            f.write(json.dumps(class_count))
+        # with open("class_count.txt", "w") as f:
+        #     f.write(json.dumps(class_count))
+
+    print("Summary: ")
+    print("\t" + str(len(class_count)) + " labels scanned.")
+    for i in range(len(class_count)):
+        print("\tFiles of type Label " + str(i + 1) + ": " + str(class_count[i]))
 
     return features_summary
 
@@ -75,3 +85,5 @@ def summarise_class(email_features_matrix, email_labels):
 # top_words, top_word_id = create_word_database(TRAIN_DIR)
 # email_features_matrix, email_labels = extract_features(TRAIN_DIR, top_word_id)
 # partition = partition_by_labels(email_features_matrix, email_labels)
+# model = summarise_labels(email_features_matrix, email_labels)
+# print(len(model[0]))
