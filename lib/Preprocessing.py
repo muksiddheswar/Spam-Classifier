@@ -51,9 +51,10 @@ def create_word_database(directory: str):
     for index, word in enumerate(list(top_words)):
         top_word_id[word[0]] = index + 1
 
-    # f = open("mail_count.txt", "w")
-    # f.write(str(mail_count))
-    # f.close()
+    # Mail count is later used in get classification.
+    f = open("mail_count.txt", "w")
+    f.write(str(mail_count))
+    f.close()
 
     print("Create DB: Successfully completed top database creation.")
     print("Create DB: Files scanned: " + mail_count.__str__() + ".")
