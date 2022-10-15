@@ -70,7 +70,6 @@ def extract_features(directory, top_word_id):
     :type directory: str
 
     """
-    # top_words, top_word_id = create_word_database(directory)
     email_files = [os.path.join(directory, fi) for fi in os.listdir(directory)]
     email_features_matrix = np.zeros((len(email_files), 3000))
     instance_labels = np.zeros(len(email_files))
