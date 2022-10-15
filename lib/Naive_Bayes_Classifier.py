@@ -1,5 +1,5 @@
-from lib.Preprocessing import make_dictionary, extract_features
-from lib.TrainingAndSummarise import summarise_class
+from lib.Preprocessing import create_word_database, extract_features
+from lib.Partition_And_Summarise import summarise_labels
 from lib.Testing import accuracy, get_classification
 
 
@@ -8,15 +8,14 @@ from lib.Testing import accuracy, get_classification
 # ---------------------------------------------------------------------------------
 
 def naive_bayes_classifier(train_dir ="../train-mails", test_dir ="../test-mails"):
-    dictionary = make_dictionary(train_dir)
-    print("Reading and Processing emails from file.")
+    top_words, top_word_id = create_word_database(train_dir)
+    train_features_matrix, train_email_labels = extract_features(train_dir, top_word_id)
+    test_feature_matrix, test_labels = extract_features(test_dir, top_word_id)
 
-    features_matrix, labels = extract_features(train_dir)
-    test_feature_matrix, test_labels = extract_features(test_dir)
-
-    print("Training model.")
-    model = summarise_class(features_matrix, labels)
-
+    model = summarise_labels(train_features_matrix, train_email_labels)
     predicted_labels = get_classification(model, test_feature_matrix)
+    print("Classifier: Finished classification.")
+    print("Classifier: Accuracy score = " + str(accuracy(test_labels, predicted_labels)))
 
-    print("Finished classifying. accuracy score : " + str(accuracy(test_labels, predicted_labels)))
+
+# naive_bayes_classifier()
