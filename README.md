@@ -9,8 +9,13 @@ Master is the latest version. (And possibly under development.)
 _Working on making this project more generic._
 
 ## Version: V02_02    
-- Under development.
 - Add docstring and comments.
+- Optimised variable usage.
+- Fixed bugs.
+- Better logging.
+
+![image](https://user-images.githubusercontent.com/17706548/195998689-ddf8480f-d47f-4615-99c3-aa35f03fe411.png)
+
 
 ## Version: V02_01    
 
