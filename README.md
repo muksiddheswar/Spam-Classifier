@@ -10,6 +10,8 @@ Coded from the scratch in Python.
 - For a given mail calculate the log gaussian probability for each class.
 - Label with the highest probability wins.
 
+---
+
 Each version has it's own branch.   
 Master is the latest version. (And possibly under development.)    
 
