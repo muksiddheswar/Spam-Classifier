@@ -9,7 +9,7 @@ import numpy as np
 from collections import Counter
 
 
-def quantify_mails(directory: str):
+def create_word_database(directory: str):
     """
     Reads all emails and creates a list of tuples of the 3000 most common words.
     Also creates IDs for each word.
@@ -20,7 +20,7 @@ def quantify_mails(directory: str):
     # List of all words in all train mails
     all_words = []
     mail_count = 0
-    word_id = {}
+    top_word_id = {}
 
     # Creates a list of all email files along with their path
     emails = [os.path.join(directory, f) for f in os.listdir(directory)]
@@ -34,34 +34,34 @@ def quantify_mails(directory: str):
                 all_words += words
 
     # Creates a dictionary (Counter) of all words with their counts
-    top_word_counts = Counter(all_words)
+    top_words = Counter(all_words)
 
     # Remove all punctuations and single letter words
-    for item in list(top_word_counts):
+    for item in list(top_words):
         if not item.isalpha():
-            del top_word_counts[item]
+            del top_words[item]
         elif len(item) == 1:
-            del top_word_counts[item]
+            del top_words[item]
 
     # Working with the 3000 most common words in the dictionary.
     # most_common return a list of tuples
-    top_word_counts = top_word_counts.most_common(3000)
+    top_words = top_words.most_common(3000)
 
-    for index, word in enumerate(list(top_word_counts)):
-        word_id[word[0]] = index + 1
+    for index, word in enumerate(list(top_words)):
+        top_word_id[word[0]] = index + 1
 
     # f = open("mail_count.txt", "w")
     # f.write(str(mail_count))
     # f.close()
 
-    return top_word_counts, word_id
+    return top_words, top_word_id
 
 
 # Creates a tabular representation of the dataset
 def extract_features(directory):
-    top_word_counts, word_id = quantify_mails(directory)
+    top_words, top_word_id = create_word_database(directory)
     email_files = [os.path.join(directory, fi) for fi in os.listdir(directory)]
-    features_matrix = np.zeros((len(email_files), 3000))
+    email_features_matrix = np.zeros((len(email_files), 3000))
     instance_labels = np.zeros(len(email_files))
 
     print("Calculating feature matrix for " + os.path.basename(directory) + " ...", end='')
@@ -78,8 +78,8 @@ def extract_features(directory):
                 if num == 2:
                     words = line.split()
                     for word in words:
-                        if word in word_id:
-                            features_matrix[mail_id, word_id[word]-1] += words.count(word)
+                        if word in top_word_id:
+                            email_features_matrix[mail_id, top_word_id[word]-1] += words.count(word)
 
         filepath_tokens = mail.split('\\')
         last_token = filepath_tokens[len(filepath_tokens) - 1]
@@ -91,10 +91,10 @@ def extract_features(directory):
         mail_id = mail_id + 1
 
     print("\nSuccessfully calculated feature matrix for " + os.path.basename(directory) + ".")
-    return features_matrix, instance_labels
+    return email_features_matrix, instance_labels
 
 
-TRAIN_DIR = "../train-mails"
+# TRAIN_DIR = "../train-mails"
 # top_word_counts_, word_id_ = quantify_mails(TRAIN_DIR)
 # print(top_word_counts_)
 # print(len(top_word_counts_))
