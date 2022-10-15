@@ -61,8 +61,15 @@ def create_word_database(directory: str):
     return top_words, top_word_id
 
 
-# Creates a tabular representation of the dataset
 def extract_features(directory):
+    """
+    Creates a tabular representation of the dataset.
+    Reads each file and converts it into a feature matrix of length 3000.
+    Calculates count of each of the top 3000 words in the DB.
+
+    :type directory: str
+
+    """
     top_words, top_word_id = create_word_database(directory)
     email_files = [os.path.join(directory, fi) for fi in os.listdir(directory)]
     email_features_matrix = np.zeros((len(email_files), 3000))
@@ -98,8 +105,8 @@ def extract_features(directory):
     return email_features_matrix, instance_labels
 
 
-TRAIN_DIR = "../train-mails"
+# TRAIN_DIR = "../train-mails"
 # top_word_counts_, word_id_ = quantify_mails(TRAIN_DIR)
-features_matrix_, instance_labels_ = extract_features(TRAIN_DIR)
-print(features_matrix_.shape)
-print(instance_labels_.shape)
+# features_matrix_, instance_labels_ = extract_features(TRAIN_DIR)
+# print(features_matrix_.shape)
+# print(instance_labels_.shape)
