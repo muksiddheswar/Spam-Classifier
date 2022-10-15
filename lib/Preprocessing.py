@@ -12,15 +12,16 @@ from collections import Counter
 def create_word_database(directory: str):
     """
     Reads all emails and creates a list of tuples of the 3000 most common words.
-    Also creates IDs for each word.
+    Also creates IDs for each of the top 3000 word.
 
     :param directory: str
     :return: list[tuple], dict[str, int]
     """
-    # List of all words in all train mails
     all_words = []
     mail_count = 0
     top_word_id = {}
+
+    print("Create DB: Calculating top 3000 word database.")
 
     # Creates a list of all email files along with their path
     emails = [os.path.join(directory, f) for f in os.listdir(directory)]
@@ -54,6 +55,9 @@ def create_word_database(directory: str):
     # f.write(str(mail_count))
     # f.close()
 
+    print("Create DB: Successfully completed top database creation.")
+    print("Create DB: Files scanned: " + mail_count.__str__() + ".")
+
     return top_words, top_word_id
 
 
@@ -64,7 +68,7 @@ def extract_features(directory):
     email_features_matrix = np.zeros((len(email_files), 3000))
     instance_labels = np.zeros(len(email_files))
 
-    print("Calculating feature matrix for " + os.path.basename(directory) + " ...", end='')
+    print("Create FT: Calculating feature matrix for " + os.path.basename(directory) + " ...", end='')
 
     mail_id = 0
 
@@ -79,7 +83,7 @@ def extract_features(directory):
                     words = line.split()
                     for word in words:
                         if word in top_word_id:
-                            email_features_matrix[mail_id, top_word_id[word]-1] += words.count(word)
+                            email_features_matrix[mail_id, top_word_id[word] - 1] += words.count(word)
 
         filepath_tokens = mail.split('\\')
         last_token = filepath_tokens[len(filepath_tokens) - 1]
@@ -90,20 +94,12 @@ def extract_features(directory):
 
         mail_id = mail_id + 1
 
-    print("\nSuccessfully calculated feature matrix for " + os.path.basename(directory) + ".")
+    print("\nCreate FT: Successfully calculated feature matrix for " + os.path.basename(directory) + ".")
     return email_features_matrix, instance_labels
 
 
-# TRAIN_DIR = "../train-mails"
+TRAIN_DIR = "../train-mails"
 # top_word_counts_, word_id_ = quantify_mails(TRAIN_DIR)
-# print(top_word_counts_)
-# print(len(top_word_counts_))
-# print(type(top_word_counts_))
-# print(word_id_)
-# print(type(word_id_))
-# print(len(word_id_))
-
-
-# features_matrix_, instance_labels_ = extract_features(TRAIN_DIR)
-# print(features_matrix_.shape)
-# print(instance_labels_.shape)
+features_matrix_, instance_labels_ = extract_features(TRAIN_DIR)
+print(features_matrix_.shape)
+print(instance_labels_.shape)
