@@ -3,6 +3,13 @@
 This is an implementation of the Naive Bayes Classification technique as a Spam Classifier.    
 Coded from the scratch in Python.
 
+### Classifier Logic:
+- Scan all mails to get the top 3000 most used words.
+- Convert each mail into a feature matrix based on this.
+- Calculate the summary of these top 3000 words for each label.
+- For a given mail calculate the log gaussian probability for each class.
+- Label with the highest probability wins.
+
 Each version has it's own branch.   
 Master is the latest version. (And possibly under development.)    
 
