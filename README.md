@@ -13,7 +13,11 @@ Coded from the scratch in Python.
 Each version has it's own branch.   
 Master is the latest version. (And possibly under development.)    
 
-_Working on making this project more generic._
+~~_Working on making this project more generic._~~   
+No more changes to the actual classifier logic will be done.    
+Future plans for this project include creation of a Flask based APIs that will:
+1. Trigger creation of the class summary.
+2. Read test emails from a specified location.
 
 ## Version: V02_02    
 - Add docstring and comments.
