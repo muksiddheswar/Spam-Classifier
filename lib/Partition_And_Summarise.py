@@ -72,7 +72,7 @@ def summarise_labels(email_features_matrix, email_labels):
     with open("class_count.txt", "w") as f:
         f.write(json.dumps(class_count))
 
-    print("Summary: ")
+    print("Model creation summary: ")
     print("\t" + str(len(class_count)) + " labels scanned.")
     for i in range(len(class_count)):
         print("\tFiles of type Label " + str(i + 1) + ": " + str(class_count[i]))

@@ -1,4 +1,4 @@
-from lib.Prediction import classify
+from lib.Classification import classify
 
 
 # ---------------------------------------------------------------------------------
