@@ -6,21 +6,31 @@ import math
 import json
 
 
-# Calculates the probability as per normal distribution
-def calculate_gaussian_probability(x, mean, stdev):
-    exp = math.exp(-(math.pow(x - mean, 2) / (2 * math.pow(stdev, 2))))
-    return (1 / (math.sqrt(2 * math.pi) * stdev)) * exp
+def calculate_gaussian_probability(x, mean, std_deviation):
+    """
+    Calculates the probability as per normal distribution.
+
+    """
+    exp = math.exp(-(math.pow(x - mean, 2) / (2 * math.pow(std_deviation, 2))))
+    return (1 / (math.sqrt(2 * math.pi) * std_deviation)) * exp
 
 
-def calculate_log_gaussian_probability(x, mean, stdev):
-    # Calculates the log of the terms as per normal distribution
-    exponent = math.pow(x - mean, 2) / (2 * math.pow(stdev, 2))
-    ft = math.log(1 / (math.sqrt(2 * math.pi) * stdev))
+def calculate_log_gaussian_probability(x, mean, std_deviation):
+    """
+    Calculates the log of the terms as per normal distribution
+
+    """
+
+    exponent = math.pow(x - mean, 2) / (2 * math.pow(std_deviation, 2))
+    ft = math.log(1 / (math.sqrt(2 * math.pi) * std_deviation))
     return ft, exponent
 
 
-# Calculates probability of an instance being a part of each class.
 def check_class_probabilities(features_summary, input_instance):
+    """
+    Calculates probability of an instance being a part of each class.
+
+    """
     probabilities = {}
     for class_label, class_summary in features_summary.items():
 
@@ -45,13 +55,16 @@ def check_class_probabilities(features_summary, input_instance):
         class_count = json.loads(result)
         f.close()
 
-        probabilities[str(class_label)] = log_terms - exponent_terms \
-                                          + math.log((class_count[str(class_label)] / mail_count))
+        probabilities[str(class_label)] = log_terms - exponent_terms + math.log((class_count[str(class_label)] /
+                                                                                 mail_count))
     return probabilities
 
 
-# Predicts the class of the function
 def classify(features_summary, input_instance):
+    """
+    Predicts the class of the function
+
+    """
     probabilities = check_class_probabilities(features_summary, input_instance)
 
     final_label, max_prob = -1, 1
