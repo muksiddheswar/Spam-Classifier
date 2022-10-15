@@ -3,7 +3,6 @@
 # ---------------------------------------------------------------------------------
 
 import math
-import json
 
 
 def partition_by_labels(features_matrix, instance_labels):
@@ -68,9 +67,6 @@ def summarise_labels(email_features_matrix, email_labels):
         # The mean and standard deviation of each feature for each label
         features_summary[class_label] = summarise_features(instances)
         class_count[class_label] = len(instances)
-
-        # with open("class_count.txt", "w") as f:
-        #     f.write(json.dumps(class_count))
 
     print("Summary: ")
     print("\t" + str(len(class_count)) + " labels scanned.")
